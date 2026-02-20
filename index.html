@@ -663,9 +663,11 @@
 
             function handleMouseMove(e) {
                 if (sparklesEnabled) {
-                    // Create sparkles
-                    if (Math.random() > 0.7) {
-                        createSparkle(e.clientX, e.clientY);
+                    // Create multiple sparkles
+                    for (let i = 0; i < 4; i++) {
+                        if (Math.random() > 0.3) {
+                            createSparkle(e.clientX, e.clientY);
+                        }
                     }
 
                     // Update cursor tracker
