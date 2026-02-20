@@ -259,6 +259,171 @@
                 background-color: #fafaf8;
                 border-bottom-color: #ddd;
             }
+
+            /* ========== EXTRAVAGANT VERSION ========== */
+            body.version-extravagant {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif;
+                line-height: 1.7;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 20px;
+                color: #fff;
+                background: linear-gradient(
+                    -45deg,
+                    #ee7752,
+                    #e73c7e,
+                    #23a6d5,
+                    #23d5ab
+                );
+                background-size: 400% 400%;
+                animation: gradientShift 15s ease infinite;
+                min-height: 100vh;
+                cursor: none;
+                overflow-x: hidden;
+            }
+
+            @keyframes gradientShift {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .version-extravagant h1 {
+                font-size: 3em;
+                margin-bottom: 40px;
+                color: #fff;
+                text-align: center;
+                text-shadow:
+                    0 0 20px rgba(255, 255, 255, 0.5),
+                    0 0 40px rgba(255, 0, 255, 0.3);
+                font-weight: 900;
+                letter-spacing: 2px;
+            }
+
+            .version-extravagant .post-item {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 30px;
+                margin-bottom: 25px;
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .version-extravagant .post-item:hover {
+                transform: scale(1.05);
+                background: rgba(255, 255, 255, 0.2);
+                border: 2px solid rgba(255, 255, 255, 0.4);
+                box-shadow:
+                    0 8px 32px rgba(255, 0, 255, 0.4),
+                    0 0 40px rgba(0, 255, 255, 0.2);
+            }
+
+            .version-extravagant .post-item h2 {
+                margin: 0 0 15px 0;
+                font-size: 1.5em;
+                color: #fff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+
+            .version-extravagant .post-item p {
+                font-size: 1.05em;
+                line-height: 1.8;
+                color: rgba(255, 255, 255, 0.95);
+                transition: all 0.3s ease;
+            }
+
+            .version-extravagant .post-item p:hover {
+                font-size: 1.15em;
+                color: #fff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            .sparkle {
+                position: fixed;
+                pointer-events: none;
+                z-index: 999;
+                animation: sparkleAnimation 0.6s ease-out forwards;
+            }
+
+            @keyframes sparkleAnimation {
+                0% {
+                    opacity: 1;
+                    transform: translate(0, 0) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translate(var(--tx), var(--ty)) scale(0);
+                }
+            }
+
+            .version-extravagant .version-picker {
+                background-color: rgba(0, 0, 0, 0.3);
+                border-bottom-color: rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(10px);
+            }
+
+            .version-extravagant .version-picker label {
+                color: #fff;
+                text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .version-extravagant .version-picker button {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.4);
+                color: #fff;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .version-extravagant .version-picker button:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            }
+
+            .version-extravagant .version-picker button.active {
+                background-color: rgba(255, 255, 255, 0.4);
+                border-color: rgba(255, 255, 255, 0.6);
+                color: #fff;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+
+            #cursor-tracker {
+                position: fixed;
+                pointer-events: none;
+                z-index: 10000;
+                width: 30px;
+                height: 30px;
+                border: 2px solid rgba(255, 255, 255, 0.6);
+                border-radius: 50%;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            }
+
+            #cursor-tracker::before {
+                content: "";
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, 0.8),
+                    rgba(255, 255, 255, 0.2)
+                );
+                border-radius: 50%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            }
         </style>
     </head>
     <body class="version-boring">
@@ -270,7 +435,12 @@
             <button onclick="switchVersion('modern')">Modern</button>
             <button onclick="switchVersion('dark')">Dark</button>
             <button onclick="switchVersion('minimal')">Minimal</button>
+            <button onclick="switchVersion('extravagant')">
+                ✨ Extravagant
+            </button>
         </div>
+
+        <div id="cursor-tracker" style="display: none"></div>
 
         <h1>10 Essential Engineering Principles 📚</h1>
 
@@ -393,6 +563,7 @@
                     "version-modern",
                     "version-dark",
                     "version-minimal",
+                    "version-extravagant",
                 );
 
                 // Add the new version class
@@ -408,6 +579,15 @@
 
                 // Save preference to localStorage
                 localStorage.setItem("preferredVersion", version);
+
+                // Initialize sparkles for extravagant mode
+                if (version === "extravagant") {
+                    initializeSparkles();
+                    showCursorTracker();
+                } else {
+                    removeSparkles();
+                    hideCursorTracker();
+                }
             }
 
             // Load saved preference on page load
@@ -419,6 +599,7 @@
                     "version-modern",
                     "version-dark",
                     "version-minimal",
+                    "version-extravagant",
                 );
                 document.body.classList.add(`version-${savedVersion}`);
 
@@ -432,12 +613,78 @@
                             "modern",
                             "dark",
                             "minimal",
+                            "extravagant",
                         ];
                         if (versions[index] === savedVersion) {
                             btn.classList.add("active");
                         }
                     });
+
+                if (savedVersion === "extravagant") {
+                    initializeSparkles();
+                    showCursorTracker();
+                }
             });
+
+            // Sparkle effect for extravagant mode
+            function createSparkle(x, y) {
+                const sparkle = document.createElement("div");
+                sparkle.className = "sparkle";
+
+                const emojis = ["✨", "⭐", "💫", "🌟", "✨", "🎆"];
+                sparkle.textContent =
+                    emojis[Math.floor(Math.random() * emojis.length)];
+
+                sparkle.style.left = x + "px";
+                sparkle.style.top = y + "px";
+                sparkle.style.fontSize = Math.random() * 20 + 10 + "px";
+
+                const tx = (Math.random() - 0.5) * 100;
+                const ty = (Math.random() - 0.5) * 100 - 50;
+                sparkle.style.setProperty("--tx", tx + "px");
+                sparkle.style.setProperty("--ty", ty + "px");
+
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => sparkle.remove(), 600);
+            }
+
+            let sparklesEnabled = false;
+
+            function initializeSparkles() {
+                sparklesEnabled = true;
+                document.addEventListener("mousemove", handleMouseMove);
+            }
+
+            function removeSparkles() {
+                sparklesEnabled = false;
+                document.removeEventListener("mousemove", handleMouseMove);
+            }
+
+            function handleMouseMove(e) {
+                if (sparklesEnabled) {
+                    // Create sparkles
+                    if (Math.random() > 0.7) {
+                        createSparkle(e.clientX, e.clientY);
+                    }
+
+                    // Update cursor tracker
+                    const cursorTracker =
+                        document.getElementById("cursor-tracker");
+                    cursorTracker.style.left = e.clientX - 15 + "px";
+                    cursorTracker.style.top = e.clientY - 15 + "px";
+                }
+            }
+
+            function showCursorTracker() {
+                const cursorTracker = document.getElementById("cursor-tracker");
+                cursorTracker.style.display = "block";
+            }
+
+            function hideCursorTracker() {
+                const cursorTracker = document.getElementById("cursor-tracker");
+                cursorTracker.style.display = "none";
+            }
         </script>
     </body>
 </html>
