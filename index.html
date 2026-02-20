@@ -5,40 +5,273 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Engineering Fundamentals - A Blog Post</title>
         <style>
-            body {
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Version Picker */
+            .version-picker {
+                position: sticky;
+                top: 0;
+                background-color: #f0f0f0;
+                padding: 15px;
+                border-bottom: 2px solid #ddd;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                z-index: 1000;
+                flex-wrap: wrap;
+            }
+
+            .version-picker label {
+                font-weight: 600;
+                margin-right: 10px;
+            }
+
+            .version-picker button {
+                padding: 8px 16px;
+                border: 2px solid #999;
+                background-color: white;
+                cursor: pointer;
+                border-radius: 4px;
+                font-size: 14px;
+                transition: all 0.3s ease;
+            }
+
+            .version-picker button.active {
+                background-color: #3498db;
+                color: white;
+                border-color: #3498db;
+            }
+
+            .version-picker button:hover:not(.active) {
+                border-color: #3498db;
+                color: #3498db;
+            }
+
+            /* ========== BORING VERSION ========== */
+            body.version-boring {
+                font-family: Arial, sans-serif;
+                line-height: 1.5;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 20px;
+                color: #000;
+                background-color: #fff;
+            }
+
+            .version-boring h1 {
+                font-size: 2em;
+                margin-bottom: 20px;
+                color: #000;
+            }
+
+            .version-boring .post-item {
+                margin-bottom: 20px;
+                padding: 0;
+                background-color: transparent;
+                border: none;
+                border-left: none;
+            }
+
+            .version-boring .post-item h2 {
+                font-size: 1.2em;
+                margin: 15px 0 10px 0;
+                color: #000;
+            }
+
+            .version-boring .post-item p {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+
+            /* ========== MODERN VERSION ========== */
+            body.version-modern {
                 font-family:
                     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                     "Helvetica Neue", Arial, sans-serif;
-                line-height: 1.6;
-                max-width: 800px;
+                line-height: 1.7;
+                max-width: 900px;
                 margin: 0 auto;
-                padding: 20px;
-                color: #333;
-                background-color: #f9f9f9;
-            }
-            h1 {
+                padding: 40px 20px;
                 color: #2c3e50;
-                border-bottom: 3px solid #3498db;
-                padding-bottom: 10px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
             }
-            h2 {
-                color: #34495e;
-                margin-top: 30px;
+
+            .version-modern h1 {
+                font-size: 2.5em;
+                margin-bottom: 40px;
+                color: white;
+                text-align: center;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             }
-            .post-item {
-                background-color: white;
-                padding: 15px;
-                margin-bottom: 15px;
-                border-left: 4px solid #3498db;
-                border-radius: 4px;
+
+            .version-modern .post-item {
+                background: white;
+                padding: 30px;
+                margin-bottom: 25px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                transition:
+                    transform 0.3s ease,
+                    box-shadow 0.3s ease;
+                border-left: 6px solid #667eea;
             }
-            .post-item h2 {
-                margin-top: 0;
+
+            .version-modern .post-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .version-modern .post-item h2 {
+                margin: 0 0 15px 0;
+                font-size: 1.4em;
+                color: #667eea;
+            }
+
+            .version-modern .post-item p {
+                font-size: 1.05em;
+                line-height: 1.8;
+                color: #555;
+            }
+
+            /* ========== DARK VERSION ========== */
+            body.version-dark {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif;
+                line-height: 1.7;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 40px 20px;
+                color: #e0e0e0;
+                background-color: #1a1a1a;
+                min-height: 100vh;
+            }
+
+            .version-dark h1 {
+                font-size: 2.5em;
+                margin-bottom: 40px;
+                color: #00d4ff;
+                text-align: center;
+            }
+
+            .version-dark .post-item {
+                background-color: #2d2d2d;
+                padding: 25px;
+                margin-bottom: 25px;
+                border-radius: 8px;
+                border-left: 5px solid #00d4ff;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+                transition: background-color 0.3s ease;
+            }
+
+            .version-dark .post-item:hover {
+                background-color: #333;
+            }
+
+            .version-dark .post-item h2 {
+                margin: 0 0 15px 0;
+                font-size: 1.4em;
+                color: #00d4ff;
+            }
+
+            .version-dark .post-item p {
+                font-size: 1.05em;
+                line-height: 1.8;
+                color: #b0b0b0;
+            }
+
+            /* ========== MINIMAL VERSION ========== */
+            body.version-minimal {
+                font-family: "Georgia", "Times New Roman", serif;
+                line-height: 1.9;
+                max-width: 750px;
+                margin: 0 auto;
+                padding: 60px 30px;
+                color: #1a1a1a;
+                background-color: #fafaf8;
+            }
+
+            .version-minimal h1 {
+                font-size: 2.2em;
+                margin-bottom: 50px;
+                color: #1a1a1a;
+                text-align: center;
+                font-weight: 300;
+                letter-spacing: 1px;
+            }
+
+            .version-minimal .post-item {
+                margin-bottom: 50px;
+                padding-bottom: 40px;
+                border-bottom: 1px solid #ddd;
+                background-color: transparent;
+            }
+
+            .version-minimal .post-item:last-child {
+                border-bottom: none;
+            }
+
+            .version-minimal .post-item h2 {
+                margin: 0 0 15px 0;
                 font-size: 1.3em;
+                color: #1a1a1a;
+                font-weight: 600;
+            }
+
+            .version-minimal .post-item p {
+                font-size: 1.05em;
+                color: #555;
+            }
+
+            /* Update version picker for different themes */
+            .version-modern .version-picker {
+                background-color: rgba(255, 255, 255, 0.95);
+                border-bottom-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .version-dark .version-picker {
+                background-color: #2d2d2d;
+                border-bottom-color: #00d4ff;
+            }
+
+            .version-dark .version-picker button {
+                background-color: #1a1a1a;
+                border-color: #555;
+                color: #e0e0e0;
+            }
+
+            .version-dark .version-picker button.active {
+                background-color: #00d4ff;
+                color: #1a1a1a;
+                border-color: #00d4ff;
+            }
+
+            .version-dark .version-picker label {
+                color: #e0e0e0;
+            }
+
+            .version-minimal .version-picker {
+                background-color: #fafaf8;
+                border-bottom-color: #ddd;
             }
         </style>
     </head>
-    <body>
+    <body class="version-boring">
+        <div class="version-picker">
+            <label>Choose a style:</label>
+            <button class="active" onclick="switchVersion('boring')">
+                Boring
+            </button>
+            <button onclick="switchVersion('modern')">Modern</button>
+            <button onclick="switchVersion('dark')">Dark</button>
+            <button onclick="switchVersion('minimal')">Minimal</button>
+        </div>
+
         <h1>10 Essential Engineering Principles 📚</h1>
 
         <div class="post-item">
@@ -151,5 +384,60 @@
                 persuasive story about why your work matters.
             </p>
         </div>
+
+        <script>
+            function switchVersion(version) {
+                // Remove all version classes
+                document.body.classList.remove(
+                    "version-boring",
+                    "version-modern",
+                    "version-dark",
+                    "version-minimal",
+                );
+
+                // Add the new version class
+                document.body.classList.add(`version-${version}`);
+
+                // Update button states
+                document
+                    .querySelectorAll(".version-picker button")
+                    .forEach((btn) => {
+                        btn.classList.remove("active");
+                    });
+                event.target.classList.add("active");
+
+                // Save preference to localStorage
+                localStorage.setItem("preferredVersion", version);
+            }
+
+            // Load saved preference on page load
+            window.addEventListener("DOMContentLoaded", function () {
+                const savedVersion =
+                    localStorage.getItem("preferredVersion") || "boring";
+                document.body.classList.remove(
+                    "version-boring",
+                    "version-modern",
+                    "version-dark",
+                    "version-minimal",
+                );
+                document.body.classList.add(`version-${savedVersion}`);
+
+                // Update button states
+                document
+                    .querySelectorAll(".version-picker button")
+                    .forEach((btn, index) => {
+                        btn.classList.remove("active");
+                        const versions = [
+                            "boring",
+                            "modern",
+                            "dark",
+                            "minimal",
+                        ];
+                        if (versions[index] === savedVersion) {
+                            btn.classList.add("active");
+                        }
+                    });
+            });
+        </script>
     </body>
 </html>
